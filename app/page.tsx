@@ -1,9 +1,9 @@
 import { Header } from "@/components/header";
-import { ModelChart } from "@/components/model-chart";
+import Image from "next/image";
 import { ProjectCard } from "@/components/project-card";
 import { SectionHeading } from "@/components/section-heading";
 import { CopyEmail } from "@/components/copy-email";
-import { DownloadIcon, LinkedInIcon, MailIcon } from "@/components/icons";
+import { DownloadIcon, GitHubIcon, LinkedInIcon, MailIcon } from "@/components/icons";
 import { profile, projects, skillGroups } from "@/lib/content";
 
 export default function Home() {
@@ -18,9 +18,10 @@ export default function Home() {
             <h1 id="hero-title">Messy data.<br/><span>Clear decisions.</span></h1>
             <p className="hero-description">I’m Suraj. I connect analytical thinking with machine learning to find the signals that matter—and explain what they mean.</p>
             <div className="hero-actions"><a className="button button-primary" href="#work">Explore my work</a><a className="button button-secondary" href={profile.resume} download><DownloadIcon/>Download résumé</a></div>
+            <a className="hero-github" href={profile.github} target="_blank" rel="noopener noreferrer"><GitHubIcon/>Find me on GitHub<span className="sr-only"> (opens in a new tab)</span></a>
             <p className="hero-footnote">M.S. Data Science, George Washington University <span>’26</span></p>
           </div>
-          <div className="hero-evidence"><div className="evidence-caption"><span className="small-cross" aria-hidden="true">+</span><span>A SNAPSHOT OF MY WORK</span><span>01 / 03</span></div><ModelChart/></div>
+          <figure className="profile-portrait"><Image src={profile.photo} alt="Suraj Kapare wearing a suit and blue tie" width={1254} height={1254} sizes="(max-width: 850px) 90vw, 440px" preload/><figcaption><div><strong>Suraj Kapare</strong><span>Data Scientist · M.S. at GWU</span></div><span className="portrait-monogram" aria-hidden="true">sk.</span></figcaption></figure>
         </section>
 
         <div className="proof-strip shell" aria-label="Project highlights">
@@ -31,9 +32,8 @@ export default function Home() {
         </div>
 
         <section className="section shell" id="work" aria-labelledby="work-title">
-          <div className="section-heading"><div><p className="eyebrow section-eyebrow"><span>01</span> SELECTED WORK</p><h2 id="work-title">Questions worth exploring.</h2></div><p className="section-intro">Three graduate team projects.<br/>From interpretable models to cloud inference.</p></div>
+          <div className="section-heading"><div><p className="eyebrow section-eyebrow"><span>01</span> SELECTED WORK</p><h2 id="work-title">Questions worth exploring.</h2></div><p className="section-intro">Four graduate team projects.<br/>The questions, the methods, and the evidence.</p></div>
           <div className="project-grid">{projects.map(project => <ProjectCard project={project} key={project.id}/>)}</div>
-          <div className="additional-work"><div className="additional-label"><span className="eyebrow">ALSO EXPLORED</span><span className="tiny-tag">Tableau · Data storytelling</span></div><div><h3>When outbreaks and egg prices intersect.</h3><p>Joined 1,654 H5N1 outbreak records across 560 U.S. counties with BLS egg-price data to explore regional patterns and coinciding price changes.</p></div><span className="additional-date">GWU · Spring 2025</span></div>
         </section>
 
         <section className="about-section" id="about" aria-labelledby="about-title">
@@ -60,7 +60,7 @@ export default function Home() {
         </section>
 
         <section className="contact-section shell" id="contact" aria-labelledby="contact-title">
-          <div className="contact-card"><div><p className="eyebrow">05 / LET’S CONNECT</p><h2 id="contact-title">A good question<br/>is a great place to start.</h2><p>Have a data science opportunity or an interesting problem?<br className="desktop-break"/> I’d like to hear about it.</p></div><div className="contact-links"><a className="email-link" href={`mailto:${profile.email}`}><MailIcon/><span>{profile.email}</span></a><CopyEmail email={profile.email}/><div className="contact-secondary"><a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><LinkedInIcon/>LinkedIn<span className="sr-only"> (opens in a new tab)</span></a><a href={profile.resume} download><DownloadIcon/>Data science résumé</a><a href={profile.analystResume} download><DownloadIcon/>Data analyst résumé</a></div><span className="contact-location">{profile.location}</span></div></div>
+          <div className="contact-card"><div><p className="eyebrow">05 / LET’S CONNECT</p><h2 id="contact-title">A good question<br/>is a great place to start.</h2><p>Have a data science opportunity or an interesting problem?<br className="desktop-break"/> I’d like to hear about it.</p></div><div className="contact-links"><a className="email-link" href={`mailto:${profile.email}`}><MailIcon/><span>{profile.email}</span></a><CopyEmail email={profile.email}/><div className="contact-secondary"><a href={profile.github} target="_blank" rel="noopener noreferrer"><GitHubIcon/>GitHub<span className="sr-only"> (opens in a new tab)</span></a><a href={profile.linkedin} target="_blank" rel="noopener noreferrer"><LinkedInIcon/>LinkedIn<span className="sr-only"> (opens in a new tab)</span></a><a href={profile.resume} download><DownloadIcon/>Data science résumé</a><a href={profile.analystResume} download><DownloadIcon/>Data analyst résumé</a></div><span className="contact-location">{profile.location}</span></div></div>
         </section>
       </main>
       <footer className="shell footer"><span>© {new Date().getFullYear()} {profile.fullName}</span><span>Curiosity. Evidence. Clarity.</span><a href="#top">Back to top</a></footer>
